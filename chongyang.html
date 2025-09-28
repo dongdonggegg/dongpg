@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重陽の節句 - 伝統的な祝日の紹介</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwindカスタムテーマの設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D97706', // 菊を代表する暖かい金色
+                        secondary: '#9B2226', // 伝統的な祝日色の深紅
+                        neutral: '#F5F5DC', // 古風な背景の米色
+                        dark: '#4B3621', // 文字の深い茶色
+                    },
+                    fontFamily: {
+                        'title': ['"Ma Shan Zheng"', 'cursive'],
+                        'content': ['"Noto Serif JP"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .bg-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d97706' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral bg-pattern text-dark font-content antialiased scroll-smooth">
+    <!-- 上部ナビゲーション -->
+    <nav class="sticky top-0 z-50 bg-neutral/90 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-title text-primary">重陽の節句</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#origin" class="hover:text-primary transition-colors duration-300">起源</a>
+                <a href="#customs" class="hover:text-primary transition-colors duration-300">習慣</a>
+                <a href="#chrysanthemum" class="hover:text-primary transition-colors duration-300">菊</a>
+                <a href="#climbing" class="hover:text-primary transition-colors duration-300">登山</a>
+                <a href="#poetry" class="hover:text-primary transition-colors duration-300">詩歌</a>
+            </div>
+            <button class="md:hidden text-dark text-xl" id="menuToggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- モバイル用メニュー -->
+        <div id="mobileMenu" class="hidden md:hidden bg-neutral shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#origin" class="py-2 hover:text-primary transition-colors duration-300">起源</a>
+                <a href="#customs" class="py-2 hover:text-primary transition-colors duration-300">習慣</a>
+                <a href="#chrysanthemum" class="py-2 hover:text-primary transition-colors duration-300">菊</a>
+                <a href="#climbing" class="py-2 hover:text-primary transition-colors duration-300">登山</a>
+                <a href="#poetry" class="py-2 hover:text-primary transition-colors duration-300">詩歌</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローエリア -->
+    <header class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/15/1920/1080" alt="重陽の節句の風景" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark/60 to-dark/30"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center md:text-left md:max-w-2xl">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-title text-white mb-4 text-shadow animate-[fadeIn_1s_ease-in-out]">
+                九九重陽
+            </h1>
+            <p class="text-xl md:text-2xl text-white text-shadow mb-8 animate-[fadeIn_1.5s_ease-in-out]">
+                菊を鑑賞し、高みに登り、年配の者を敬い、親を思う
+            </p>
+            <a href="#origin" class="inline-block bg-primary hover:bg-primary/80 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 animate-[fadeIn_2s_ease-in-out]">
+                詳細を見る <i class="fa fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <!-- 祝日の起源 -->
+        <section id="origin" class="mb-24">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-title text-primary mb-6 relative">
+                        祝日の起源
+                        <span class="absolute -bottom-2 left-0 w-24 h-1 bg-secondary"></span>
+                    </h2>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        重陽の節句は、重九節、秋干しの節とも呼ばれ、中国の伝統的な祝日で、旧暦9月9日に行われます。『易経』では「九」を陽の数と定めており、9月9日は二つの九が重なるため「重陽」と呼ばれ、「重九」とも言います。
+                    </p>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        重陽の節句の起源は先秦時代にさかのぼることができ、戦国時代には9月に農作物が豊作を収める時期に天と祖霊を祭る行事が行われていました。唐代になると、重陽の節句は正式に民間の祝日と定められ、その後歴代の王朝を通じて今日まで続けられています。
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        1989年には、旧暦9月9日が「老人の日」と定められ、社会全体に高齢者を尊び、敬い、愛で、助ける風潮を提唱するようになり、重陽の節句に新たな意義が加えられました。
+                    </p>
+                </div>
+                <div class="md:w-1/2 relative group">
+                    <img src="https://picsum.photos/id/29/800/600" alt="重陽の節句の起源の挿絵" class="w-full h-auto rounded-lg shadow-xl transform group-hover:scale-[1.02] transition-transform duration-500">
+                    <div class="absolute -bottom-4 -right-4 bg-primary text-white p-4 rounded-lg shadow-lg hidden md:block">
+                        <p class="font-title text-xl">先秦に始まり、唐宋に盛んに</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 伝統的な習慣の概要 -->
+        <section id="customs" class="mb-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-title text-primary mb-6 relative inline-block">
+                伝統的な習慣
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-secondary"></span>
+            </h2>
+            <p class="max-w-3xl mx-auto mb-12 text-lg">
+                重陽の節句には豊富な民俗活動があり、これらの習慣は人々の自然に対する畏敬の念を反映するとともに、美しい生活への憧れと長老に対する尊敬を託しています。
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-tree text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">高みに登って遠くを望む</h3>
+                    <p>重陽の節句には高みに登る習慣があり、金秋9月、天高く気爽やかな季節に高みに登って遠くを望むと、心身が爽快になり、健康を増進させることができます。</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-leaf text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">菊を鑑賞して酒を飲む</h3>
+                    <p>菊は秋に満開になり、長寿の花と見なされています。重陽の節句には菊を鑑賞し、菊酒を飲む習慣があり、吉祥と長寿を願う意味があります。</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-gift text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">敬老と感謝</h3>
+                    <p>老人の日として、重陽の節句には長老に敬意を表し、贈り物をし、長老と一緒に過ごす伝統があります。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 菊の特集 -->
+        <section id="chrysanthemum" class="mb-24">
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-title text-primary mb-6 relative">
+                        重陽の菊
+                        <span class="absolute -bottom-2 left-0 w-24 h-1 bg-secondary"></span>
+                    </h2>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        菊は重陽の節句を代表する花で、旧暦9月は「菊月」とも呼ばれます。この時期、菊が満開になり、ちょうど菊を鑑賞するのに最適な季節です。
+                    </p>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        古人は菊に長寿をもたらす効果があると考え、重陽の節句に菊酒を飲む習慣は古くから存在しています。『西京雑記』によると、早くも漢代には「菊酒を飲むと長寿になる」という説がありました。
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        菊は霜に耐えて咲く品格で、文人たちに愛されてきました。東晋の詩人陶淵明の「東籬で菊を摘み、悠然と南山を見る」という名句は、さらに菊に隠遁し高洁な文化的意味を与えました。
+                    </p>
+                    
+                    <div class="mt-8 p-4 bg-primary/10 rounded-lg">
+                        <p class="italic text-primary font-medium">
+                            「花の中で特別に菊を好むのではなく、この花が咲き終われば他に花はないからです。」 —— 元鎮『菊』
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                    <img src="https://picsum.photos/id/106/600/400" alt="菊の写真1" class="w-full h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/117/600/400" alt="菊の写真2" class="w-full h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 mt-8">
+                    <img src="https://picsum.photos/id/124/600/400" alt="菊の写真3" class="w-full h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://picsum.photos/id/126/600/400" alt="菊の写真4" class="w-full h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 mt-8">
+                </div>
+            </div>
+        </section>
+
+        <!-- 登山の特集 -->
+        <section id="climbing" class="mb-24">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/id/29/800/600" alt="重陽の節句の登山" class="w-full h-auto rounded-lg shadow-xl">
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <img src="https://picsum.photos/id/137/400/300" alt="山の風景" class="w-full h-32 object-cover rounded-lg shadow-md">
+                        <img src="https://picsum.photos/id/142/400/300" alt="高みから眺める景色" class="w-full h-32 object-cover rounded-lg shadow-md">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-title text-primary mb-6 relative">
+                        重陽の登山
+                        <span class="absolute -bottom-2 left-0 w-24 h-1 bg-secondary"></span>
+                    </h2>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        登山は重陽の節句の最も重要な習慣の一つです。金秋9月、天高く気爽やかな季節に高みに登って遠くを眺めると、体を鍛えることができるだけでなく、心も爽快になります。
+                    </p>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        登山の起源にはさまざまな説があります。一つは古人の山の神への崇拝に由来し、山に登って祈りを捧げるというものです。もう一つは災いを避けることに関係があり、重陽の節句に山に登ると災いを避けることができるという伝説があります。
+                    </p>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        山に登るとき、人々は茱萸を身につけます。茱萸は「辟邪翁」とも呼ばれ、強い香りがあり、古人は虫を寄せ付けず、風を払い、邪気を祓うことができると考えていました。
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        今日では、重陽の節句の登山は主に自然に接し、体を鍛える方法であり、同時に人々の美しい生活への願いを託しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 重陽の詩歌 -->
+        <section id="poetry" class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-title text-primary mb-10 relative text-center inline-block mx-auto">
+                重陽の詩歌
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-secondary"></span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-title text-primary mb-4">九月九日憶山東兄弟</h3>
+                    <p class="text-lg mb-2">【唐】王維</p>
+                    <div class="border-l-4 border-primary pl-4 py-2 my-4 italic">
+                        <p class="mb-2">独り異郷に在りて異客と為り、</p>
+                        <p class="mb-2">節句に逢うごとに倍く親を思う。</p>
+                        <p class="mb-2">遥かに兄弟が高みに登るを知り、</p>
+                        <p>遍く茱萸を挿して一人少なし。</p>
+                    </div>
+                    <p class="text-gray-600">
+                        この詩は異郷にいる旅人が重陽の節句に故郷の家族を思う心情を描いたもので、千古に伝えられる名作となっています。
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-title text-primary mb-4">酔花陰・薄霧濃雲愁永昼</h3>
+                    <p class="text-lg mb-2">【宋】李清照</p>
+                    <div class="border-l-4 border-primary pl-4 py-2 my-4 italic">
+                        <p class="mb-2">薄霧濃雲愁永昼、瑞脳銷金獣。</p>
+                        <p class="mb-2">佳節又重陽、玉枕紗厨、半夜涼初透。</p>
+                        <p class="mb-2">東籬把酒黄昏後、有暗香盈袖。</p>
+                        <p class="mb-2">莫道不銷魂、簾巻西風、</p>
+                        <p>人は黄花より瘦せ。</p>
+                    </div>
+                    <p class="text-gray-600">
+                        この詞は重陽の節句の景物と心境を描くことで、遠くにいる親人への思いを表現しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-3xl font-title text-primary mb-2">重陽の節句</h2>
+                    <p class="text-gray-400">文化を伝承し、伝統に敬意を表する</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#origin" class="hover:text-primary transition-colors duration-300">起源</a>
+                    <a href="#customs" class="hover:text-primary transition-colors duration-300">習慣</a>
+                    <a href="#chrysanthemum" class="hover:text-primary transition-colors duration-300">菊</a>
+                    <a href="#climbing" class="hover:text-primary transition-colors duration-300">登山</a>
+                    <a href="#poetry" class="hover:text-primary transition-colors duration-300">詩歌</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 重陽の節句文化紹介 | 伝統祝日シリーズ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // モバイルメニュー切り替え
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // モバイルメニューの項目をクリック後にメニューを閉じる
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // スクロール時のナビゲーションバーのスタイル変更
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-3');
+            } else {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // 画像ロードアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+                img.onload = function() {
+                    this.classList.remove('opacity-0');
+                    this.classList.add('opacity-100');
+                }
+                // 画像が既にキャッシュされている場合
+                if (img.complete) {
+                    img.classList.remove('opacity-0');
+                    img.classList.add('opacity-100');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    
